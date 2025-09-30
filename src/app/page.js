@@ -1,103 +1,90 @@
-import Image from "next/image";
+"use client"
+
+import Link from "next/link"
+import { Exo_2 } from "next/font/google"
+import { motion } from "framer-motion"
+
+const exo = Exo_2({ subsets: ["latin"], weight: ["400", "600", "800"] })
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className={`relative flex flex-col items-center justify-center h-screen overflow-hidden bg-white ${exo.className}`}>
+      {/* One-time paint splash */}
+      <div className="paint-splash"></div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      {/* Title */}
+      <motion.h1
+        initial={{ y: -200, opacity: 0, rotate: -10 }}
+        animate={{ y: 0, opacity: 1, rotate: 0 }}
+        transition={{ type: "spring", stiffness: 140, damping: 12 }}
+        className="text-7xl sm:text-8xl font-extrabold text-purple-800 relative z-10 mb-4"
+      >
+        Clario
+      </motion.h1>
+
+      {/* Subtitle */}
+      <motion.p
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.3, type: "spring", stiffness: 120 }}
+        className="text-lg sm:text-xl text-gray-700 relative z-10 mb-10 text-center max-w-xl"
+      >
+        Build habits, track progress, and level up your life. Fun, simple, and motivating.
+      </motion.p>
+
+      {/* Buttons */}
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.6, type: "spring", stiffness: 120 }}
+        className="flex gap-4 relative z-10"
+      >
+        <Link
+          href="/sign-up"
+          className="bg-yellow-400 text-black px-8 py-3 rounded-xl shadow-lg font-bold transition transform hover:scale-105"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          Get Started
+        </Link>
+        <Link
+          href="/sign-in"
+          className="bg-purple-600 text-white px-8 py-3 rounded-xl shadow-lg font-bold transition transform hover:scale-105"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+          Sign In
+        </Link>
+      </motion.div>
+
+      <style jsx>{`
+        .paint-splash {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 600px;
+          height: 600px;
+          background: radial-gradient(circle at 30% 30%, #9b5de5, transparent 60%),
+                      radial-gradient(circle at 70% 70%, #f15bb5, transparent 60%),
+                      radial-gradient(circle at 50% 50%, #fee440, transparent 60%);
+          transform: translate(-50%, -50%) scale(0);
+          border-radius: 50%;
+          opacity: 0.6;
+          animation: splash 1s ease-out forwards;
+          z-index: 0;
+        }
+
+        @keyframes splash {
+          0% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+          }
+          50% {
+            transform: translate(-50%, -50%) scale(1.2);
+            opacity: 0.7;
+          }
+          100% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.6;
+          }
+        }
+      `}</style>
+    </main>
+  )
 }
